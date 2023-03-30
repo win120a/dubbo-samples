@@ -28,7 +28,7 @@
     <artifactId>dubbo-samples-thrift-impl</artifactId>
 
     <properties>
-        <spring.version>4.3.29.RELEASE</spring.version>
+        <spring.version>5.3.26</spring.version>
         <junit.version>4.13.1</junit.version>
     </properties>
 
