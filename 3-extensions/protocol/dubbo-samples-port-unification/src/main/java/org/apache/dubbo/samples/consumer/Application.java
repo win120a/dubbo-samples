@@ -60,7 +60,7 @@ public class Application {
             reference.setInterface(GreetingService.class);
             reference.setParameters(new HashMap<>());
             reference.getParameters().put("migration.step", mode);
-            reference.setApplication(new ApplicationConfig("first-dubbo-consumer"));
+            reference.getApplicationModel().getApplicationConfigManager().setApplication(new ApplicationConfig("first-dubbo-consumer"));
             reference.setRegistry(new RegistryConfig(
                     "zookeeper://" + zookeeperHost + ":" + zookeeperPort));
             reference.setProtocol(this.protocol);

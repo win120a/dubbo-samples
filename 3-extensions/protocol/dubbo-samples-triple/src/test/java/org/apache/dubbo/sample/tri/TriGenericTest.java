@@ -29,6 +29,7 @@ import org.apache.dubbo.sample.tri.api.PojoGreeter;
 import org.apache.dubbo.sample.tri.util.TriSampleConstants;
 
 import org.apache.dubbo.rpc.service.GenericException;
+
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
@@ -59,10 +60,10 @@ public class TriGenericTest {
         ApplicationConfig applicationConfig = new ApplicationConfig(TriGenericTest.class.getName());
         applicationConfig.setMetadataServicePort(TriSampleConstants.CONSUMER_METADATA_SERVICE_PORT);
         bootstrap.application(applicationConfig)
-            .registry(new RegistryConfig(TriSampleConstants.ZK_ADDRESS))
-            .reference(ref)
-            .reference(ref2)
-            .start();
+                .registry(new RegistryConfig(TriSampleConstants.ZK_ADDRESS))
+                .reference(ref)
+                .reference(ref2)
+                .start();
         generic = ref.get();
         longGeneric = ref2.get();
 
@@ -77,21 +78,21 @@ public class TriGenericTest {
     @Test
     public void greetUnaryResponseVoid() {
         generic.$invoke("greetResponseVoid", new String[]{String.class.getName()},
-            new Object[]{"requestVoid"});
+                new Object[]{"requestVoid"});
     }
 
     @Test
     public void greetUnary() {
         Assert.assertEquals("hello,unary", generic.$invoke("greet",
-            new String[]{String.class.getName()}, new Object[]{"unary"}));
+                new String[]{String.class.getName()}, new Object[]{"unary"}));
     }
 
     @Test
     public void greetException() {
         boolean isSupportSelfDefineException = Version.getVersion().compareTo("3.2.0") >= 0;
         try {
-        generic.$invoke("greetException", new String[]{String.class.getName()},
-            new Object[]{"exception"});
+            generic.$invoke("greetException", new String[]{String.class.getName()},
+                    new Object[]{"exception"});
             Assert.fail();
         } catch (RpcException e) {
             Assert.assertEquals(isSupportSelfDefineException, false);
@@ -104,15 +105,15 @@ public class TriGenericTest {
     @Test(expected = RpcException.class)
     public void notFoundMethod() {
         generic.$invoke("greetNotExist", new String[]{String.class.getName()},
-            new Object[]{"unary long"});
+                new Object[]{"unary long"});
     }
 
     @Test
     public void greetLong() {
         int len = 2 << 12;
         final String resp = (String) longGeneric.$invoke("greetLong",
-            new String[]{int.class.getName()},
-            new Object[]{len});
+                new String[]{int.class.getName()},
+                new Object[]{len});
         Assert.assertEquals(len, resp.length());
     }
 

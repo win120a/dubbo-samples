@@ -30,7 +30,7 @@ public class GreetingServiceIT {
     @Test
     public void test() {
         ReferenceConfig<GreetingsService> reference = new ReferenceConfig<>();
-        reference.setApplication(new ApplicationConfig("first-dubbo-consumer"));
+        reference.getApplicationModel().getApplicationConfigManager().setApplication(new ApplicationConfig("first-dubbo-consumer"));
         reference.setRegistry(new RegistryConfig("zookeeper://" + zookeeperHost + ":2181"));
         reference.setInterface(GreetingsService.class);
         GreetingsService service = reference.get();

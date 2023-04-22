@@ -52,7 +52,7 @@ public class DirectServiceIT {
         reference.setVersion("1.0.0-daily");
         reference.setGroup("test2");
         reference.setGeneric("true");
-        reference.setApplication(application);
+        reference.getApplicationModel().getApplicationConfigManager().setApplication(application);
         reference.setInterface(DirectService.class.getName());
         GenericService genericService = reference.get();
         Object obj = genericService.$invoke("sayHello", new String[]{String.class.getName()}, new Object[]{ "generic" });
@@ -68,7 +68,7 @@ public class DirectServiceIT {
         reference.setUrl("dubbo://" + providerAddress + ":20880/" + DirectService.class.getName());
         reference.setVersion("1.0.0-daily");
         reference.setGroup("test3");
-        reference.setApplication(application);
+        reference.getApplicationModel().getApplicationConfigManager().setApplication(application);
         reference.setInterface(DirectService.class.getName());
         DirectService service = reference.get();
         String result = service.sayHello("api");

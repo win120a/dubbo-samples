@@ -35,7 +35,7 @@ public class Consumer {
 
     public static void main(String[] args) throws Exception {
         ReferenceConfig<GreetingsService> reference = new ReferenceConfig<>();
-        reference.setApplication(applicationConfig);
+        reference.getApplicationModel().getApplicationConfigManager().setApplication(applicationConfig);
         reference.setConfigCenter(configCenter);
         reference.setInterface(GreetingsService.class);
         GreetingsService greetingsService = reference.get();

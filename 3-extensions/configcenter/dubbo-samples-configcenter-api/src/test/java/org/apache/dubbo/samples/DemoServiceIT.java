@@ -44,7 +44,7 @@ public class DemoServiceIT {
         ApplicationConfig applicationConfig = new ApplicationConfig("api-dubbo-consumer");
         configCenter.setAddress("zookeeper://" + zookeeperHost1 + ":" + zookeeperPort1);
         ReferenceConfig<DemoService> reference = new ReferenceConfig<>();
-        reference.setApplication(applicationConfig);
+        reference.getApplicationModel().getApplicationConfigManager().setApplication(applicationConfig);
         reference.setConfigCenter(configCenter);
         reference.setInterface(DemoService.class);
         DemoService demoService = reference.get();

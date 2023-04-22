@@ -48,7 +48,7 @@ public class MetricsServiceIT {
         }
 
         ReferenceConfig<MetricsService> reference = new ReferenceConfig<>();
-        reference.setApplication(new ApplicationConfig("metrics-demo-consumer"));
+        reference.getApplicationModel().getApplicationConfigManager().setApplication(new ApplicationConfig("metrics-demo-consumer"));
         reference.setUrl("dubbo://" + providerHost + ":" + providerPort + "/" + MetricsService.class.getName());
         reference.setInterface(MetricsService.class);
         MetricsService service = reference.get();

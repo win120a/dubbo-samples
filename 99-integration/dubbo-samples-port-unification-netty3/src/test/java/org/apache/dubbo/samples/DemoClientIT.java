@@ -31,7 +31,7 @@ public class DemoClientIT {
     public void testInterfaceDiscovery() throws InterruptedException {
         ReferenceConfig<GreetingService> reference = new ReferenceConfig<>();
         reference.setInterface(GreetingService.class);
-        reference.setApplication(new ApplicationConfig("first-dubbo-consumer"));
+        reference.getApplicationModel().getApplicationConfigManager().setApplication(new ApplicationConfig("first-dubbo-consumer"));
         String zookeeperAddress = System.getProperty("zookeeper.address", "127.0.0.1");
         reference.setRegistry(new RegistryConfig(
                 "zookeeper://" + zookeeperAddress + ":" + "2181"));
